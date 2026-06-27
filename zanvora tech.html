@@ -35,7 +35,6 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Logo Container */
         .logo-container {
             display: flex;
             align-items: center;
@@ -128,6 +127,7 @@
             font-weight: bold;
             margin-top: 20px;
             transition: 0.3s ease;
+            cursor: pointer;
         }
 
         .btn-filled:hover {
@@ -136,36 +136,25 @@
             box-shadow: 0 0 15px rgba(0, 255, 135, 0.4);
         }
 
-        /* Sections Configuration */
-        section {
+        /* All sections are initially hidden; displayed via JS */
+        .page-section {
+            display: none;
             padding: 140px 8% 80px 8%;
             min-height: 100vh;
-            display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
+        .page-section.active-page {
+            display: flex;
+        }
+
+        /* Home Section */
         #home {
             background-color: #0b0c10;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
-        }
-
-        #about {
-            background-color: #12141c;
-        }
-
-        #services {
-            background-color: #0b0c10;
-        }
-
-        #portfolio {
-            background-color: #12141c;
-        }
-
-        #contact {
-            background-color: #0b0c10;
         }
 
         .hero-content {
@@ -251,10 +240,6 @@
             overflow: hidden;
         }
 
-        #about .service-card {
-            background-color: #0b0c10;
-        }
-
         .service-card::before {
             content: '';
             position: absolute;
@@ -299,9 +284,36 @@
             line-height: 1.6;
         }
 
-        /* ==========================================================================
-           NEW PORTFOLIO GRID LAYOUT
-           ========================================================================== */
+        /* About‑more cards */
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .about-card {
+            background-color: #12141c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px 25px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+
+        .about-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .about-card p {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Portfolio Grid Layout */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -323,7 +335,6 @@
             box-shadow: 0 15px 35px rgba(0, 168, 255, 0.1);
         }
 
-        /* Project Image/Visual Placeholder Box */
         .portfolio-img-box {
             width: 100%;
             height: 200px;
@@ -336,7 +347,6 @@
             position: relative;
         }
 
-        /* Modern subtle badge inside the project image */
         .portfolio-badge {
             position: absolute;
             top: 15px;
@@ -386,7 +396,99 @@
             text-decoration: underline;
         }
 
-        /* Mobile Layout Breakpoints */
+        /* ========================================= */
+        /* BEAUTIFUL CONTACT INFO CARDS */
+        /* ========================================= */
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .contact-card {
+            background-color: #12141c;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px 35px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00a8ff, #00ff87, #00a8ff);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: transparent;
+            box-shadow: 0 15px 35px rgba(0, 255, 135, 0.15);
+        }
+
+        .contact-card:hover::before {
+            opacity: 0.3;
+        }
+
+        .contact-card .icon-wrapper {
+            font-size: 36px;
+            background: rgba(0, 168, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .contact-card:hover .icon-wrapper {
+            background: rgba(0, 255, 135, 0.15);
+            transform: scale(1.1);
+        }
+
+        .contact-card .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .contact-card .info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a4b0be;
+            font-weight: 600;
+        }
+
+        .contact-card .info-link {
+            color: #00ff87;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card .info-link:hover {
+            color: #00a8ff;
+        }
+
+        /* Mobile adjustments */
         @media (max-width: 992px) {
             header {
                 padding: 20px 5%;
@@ -455,6 +557,13 @@
             .header-actions {
                 display: none;
             }
+
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 25px 30px;
+            }
         }
     </style>
 </head>
@@ -462,21 +571,21 @@
 <body>
 
     <header>
-        <a href="#home" class="logo-container">
+        <a href="#" class="logo-container" data-nav="home">
             <img src="./image.jpeg" alt="Zanvora Mini Logo" class="header-logo-img">
             <span class="logo-text">ZANVORA <span class="green-text">TECH</span></span>
         </a>
 
         <ul class="nav-links" id="menuLinks">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="active" data-nav="home">Home</a></li>
+            <li><a href="#about" data-nav="about">About Us</a></li>
+            <li><a href="#services" data-nav="services">Services</a></li>
+            <li><a href="#portfolio" data-nav="portfolio">Portfolio</a></li>
+            <li><a href="#contact" data-nav="contact">Contact</a></li>
         </ul>
 
         <div class="header-actions">
-            <a href="#contact" class="btn-outline">Get In Touch</a>
+            <a href="#contact" class="btn-outline" data-nav="contact">Get In Touch</a>
         </div>
 
         <div class="hamburger" id="hamburgerBtn">
@@ -486,46 +595,52 @@
         </div>
     </header>
 
-    <section id="home">
+    <!-- PAGE SECTIONS -->
+    <div id="home" class="page-section active-page" data-page="home">
         <div class="hero-content">
             <span class="subtitle">INNOVATING TODAY</span>
             <h1>BUILDING <br><span class="blue-text">TOMORROW</span></h1>
             <p>Zanvora Tech delivers smart, scalable, and future-ready digital solutions for businesses worldwide.</p>
-            <a href="#services" class="btn-filled">Our Services</a>
+            <a href="#services" class="btn-filled" data-nav="services">Our Services</a>
         </div>
         <div class="hero-image">
             <img src="./image0.jpeg" alt="Zanvora Tech Logo" class="logo-img">
         </div>
-    </section>
+    </div>
 
-    <section id="about">
-        <h2 class="section-title">About <span>Us</span></h2>
-        <p class="section-desc">
-        <p>
-            Zanvora Tech is a modern technology company committed to delivering innovative digital solutions that help
-            businesses, organizations, schools, government institutions and startups succeed in the digital world.
-        </p>
+    <!-- About page (only "More About" cards) -->
+    <div id="about-more" class="page-section" data-page="about">
+        <h2 class="section-title">About <span>Zanvora Tech</span></h2>
+        <div class="about-container">
+            <div class="about-card">
+                <h3>Who We Are</h3>
+                <p>Zanvora Tech is a forward-thinking technology company dedicated to creating innovative digital
+                    solutions that help businesses, organizations, schools, and government institutions thrive in the
+                    modern digital era.</p>
+                <p>We combine creativity, technology, and strategy to build websites, mobile applications, software
+                    systems, and digital platforms that deliver measurable results and exceptional user experiences.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>Our mission is to transform ideas into powerful digital products that drive growth, improve
+                    efficiency, and create lasting value for our clients.</p>
+                <p>We are committed to providing reliable, scalable, and high-quality technology solutions that support
+                    digital transformation across every industry.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Vision</h3>
+                <p>To become one of the leading technology companies in Somaliland and beyond by delivering world-class
+                    innovation, outstanding customer service, and impactful digital solutions.</p>
+                <p>We envision a future where technology empowers every business and organization to reach its full
+                    potential.</p>
+            </div>
+        </div>
+    </div>
 
-        <br>
-
-        <p>
-            Our mission is to transform ideas into powerful digital experiences through modern websites, mobile
-            applications, software systems, branding, marketing and technology consulting services.
-        </p>
-
-        <br>
-
-        <p>
-            We focus on quality, innovation and customer satisfaction while providing scalable and reliable solutions
-            that support long-term growth and digital transformation.
-        </p>
-    </section>
-
-    <section id="services">
+    <div id="services" class="page-section" data-page="services">
         <h2 class="section-title">Our <span>Services</span></h2>
         <p class="section-desc">We combine engineering expertise with digital strategy to build premium digital
             infrastructures designed to scale your enterprise operations.</p>
-
         <div class="services-grid">
             <div class="service-card">
                 <span class="service-icon">💻</span>
@@ -558,32 +673,21 @@
                     to solidify your industry footprint.</p>
             </div>
             <div class="service-card">
-                <span class="service-icon">🤖</span>
-                <h3>AI Solutions & Automation</h3>
-                <p>Integrate machine learning frameworks, smart automation workflows, and computational data bots to
-                    maximize administrative cost savings.</p>
-            </div>
-            <div class="service-card">
                 <span class="service-icon">🤝</span>
                 <h3>IT Consulting</h3>
                 <p>Get elite architecture technical audits, security vulnerability assessments, and technological
                     deployment configurations mapped precisely to your targets.</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <section id="portfolio">
+    <div id="portfolio" class="page-section" data-page="portfolio">
         <h2 class="section-title">Our <span>Portfolio</span></h2>
         <p class="section-desc">Discover our latest deployments, automated platforms, and custom digital systems
             engineered for elite performance.</p>
-
         <div class="portfolio-grid">
-
             <div class="portfolio-card">
-                <div class="portfolio-img-box">
-                    🛍️
-                    <span class="portfolio-badge">E-commerce</span>
-                </div>
+                <div class="portfolio-img-box">🛍️<span class="portfolio-badge">E-commerce</span></div>
                 <div class="portfolio-info">
                     <h3>Zanvora Store</h3>
                     <p>A high-performance online retail marketplace engineered with real-time stock micro-trackers,
@@ -591,12 +695,8 @@
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
-
             <div class="portfolio-card">
-                <div class="portfolio-img-box">
-                    🏛️
-                    <span class="portfolio-badge">Web Portal</span>
-                </div>
+                <div class="portfolio-img-box">🏛️<span class="portfolio-badge">Web Portal</span></div>
                 <div class="portfolio-info">
                     <h3>Government Portal</h3>
                     <p>A secure, unified cloud infrastructure designed for citizen service administration, database
@@ -604,12 +704,8 @@
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
-
             <div class="portfolio-card">
-                <div class="portfolio-img-box">
-                    ⚙️
-                    <span class="portfolio-badge">AI & Automation</span>
-                </div>
+                <div class="portfolio-img-box">⚙️<span class="portfolio-badge">AI & Automation</span></div>
                 <div class="portfolio-info">
                     <h3>Automation Engine</h3>
                     <p>Custom machine learning script architectures developed to automate administrative pipelines and
@@ -617,117 +713,74 @@
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
-
-            <div class="portfolio-card">
-                <div class="portfolio-img-box">
-                    📊
-                    <span class="portfolio-badge">Mobile App</span>
-                </div>
-                <div class="portfolio-info">
-                    <h3>Fintech Mobile App</h3>
-                    <p>Native mobile banking and multi-asset management dashboard deploying advanced biometric
-                        authentication channels and fluid UI components.</p>
-                    <a href="#" class="portfolio-link">View Case Study &rarr;</a>
-                </div>
-            </div>
-
         </div>
-    </section>
-    <section class="section" id="about">
+    </div>
 
-        <h2 class="section-title">
-            About <span>Zanvora Tech</span>
-        </h2>
+    <div id="contact" class="page-section" data-page="contact">
+        <h2 class="section-title">Contact <span>Us</span></h2>
+        <p class="section-desc">Ready to start your next project? Call or email us directly.</p>
 
-        <div class="about-container">
-
-            <div class="about-card">
-
-                <h3>Who We Are</h3>
-
-                <p>
-                    Zanvora Tech is a forward-thinking technology company dedicated to creating innovative digital
-                    solutions that help businesses, organizations, schools, and government institutions thrive in the
-                    modern digital era.
-                </p>
-
-                <p>
-                    We combine creativity, technology, and strategy to build websites, mobile applications, software
-                    systems, and digital platforms that deliver measurable results and exceptional user experiences.
-                </p>
-
+        <!-- Beautiful contact cards -->
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="icon-wrapper">📞</div>
+                <div class="info-text">
+                    <span class="info-label">Phone</span>
+                    <a href="tel:+252636012364" class="info-link">+252 63 6012364</a>
+                </div>
             </div>
-
-            <div class="about-card">
-
-                <h3>Our Mission</h3>
-
-                <p>
-                    Our mission is to transform ideas into powerful digital products that drive growth, improve
-                    efficiency, and create lasting value for our clients.
-                </p>
-
-                <p>
-                    We are committed to providing reliable, scalable, and high-quality technology solutions that support
-                    digital transformation across every industry.
-                </p>
-
+            <div class="contact-card">
+                <div class="icon-wrapper">✉️</div>
+                <div class="info-text">
+                    <span class="info-label">Email</span>
+                    <a href="mailto:zanvoratech@gmail.com" class="info-link">zanvoratech@gmail.com</a>
+                </div>
             </div>
-
-            <div class="about-card">
-
-                <h3>Our Vision</h3>
-
-                <p>
-                    To become one of the leading technology companies in Somaliland and beyond by delivering world-class
-                    innovation, outstanding customer service, and impactful digital solutions.
-                </p>
-
-                <p>
-                    We envision a future where technology empowers every business and organization to reach its full
-                    potential.
-                </p>
-
-            </div>
-
-
-
-
-    </section>
+        </div>
+    </div>
 
     <script>
-        const hamburger = document.getElementById('hamburgerBtn');
-        const navLinksMenu = document.getElementById('menuLinks');
-        const individualLinks = document.querySelectorAll('.nav-links a');
-        const sections = document.querySelectorAll('section');
+        (function () {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navLinksMenu = document.getElementById('menuLinks');
+            const allNavLinks = document.querySelectorAll('.nav-links a, .logo-container[data-nav], .btn-outline[data-nav], .btn-filled[data-nav]');
+            const allPages = document.querySelectorAll('.page-section');
 
-        hamburger.addEventListener('click', () => {
-            navLinksMenu.classList.toggle('active');
-            hamburger.classList.toggle('toggle');
-        });
+            // Hamburger toggle
+            hamburger.addEventListener('click', () => {
+                navLinksMenu.classList.toggle('active');
+                hamburger.classList.toggle('toggle');
+            });
 
-        individualLinks.forEach(link => {
-            link.addEventListener('click', () => {
+            // Function to switch page
+            function switchPage(pageName) {
+                allPages.forEach(page => page.classList.remove('active-page'));
+                const targetPages = document.querySelectorAll(`.page-section[data-page="${pageName}"]`);
+                targetPages.forEach(page => page.classList.add('active-page'));
+
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('data-nav') === pageName) {
+                        link.classList.add('active');
+                    }
+                });
+
                 navLinksMenu.classList.remove('active');
                 hamburger.classList.remove('toggle');
-            });
-        });
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
 
-        window.addEventListener('scroll', () => {
-            let currentActiveSectionId = '';
-            sections.forEach(section => {
-                const sectionTopOffset = section.offsetTop;
-                if (window.pageYOffset >= (sectionTopOffset - 150)) {
-                    currentActiveSectionId = section.getAttribute('id');
-                }
+            allNavLinks.forEach(el => {
+                el.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-nav');
+                    if (page) switchPage(page);
+                });
             });
-            individualLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentActiveSectionId}`) {
-                    link.classList.add('active');
-                }
-            });
-        });
+
+            // Set initial page
+            switchPage('home');
+        })();
     </script>
 </body>
 
