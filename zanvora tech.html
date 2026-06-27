@@ -78,7 +78,6 @@
             color: #00ff87;
         }
 
-        /* Hamburger Menu (Mobile Only) */
         .hamburger {
             display: none;
             cursor: pointer;
@@ -136,7 +135,6 @@
             box-shadow: 0 0 15px rgba(0, 255, 135, 0.4);
         }
 
-        /* All sections are initially hidden; displayed via JS */
         .page-section {
             display: none;
             padding: 140px 8% 80px 8%;
@@ -149,16 +147,16 @@
             display: flex;
         }
 
-        /* Home Section */
         #home {
             background-color: #0b0c10;
-            flex-direction: row;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
         .hero-content {
-            max-width: 50%;
+            max-width: 800px;
+            width: 100%;
         }
 
         .subtitle {
@@ -187,20 +185,6 @@
             line-height: 1.6;
         }
 
-        .hero-image {
-            max-width: 45%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .logo-img {
-            max-width: 100%;
-            height: auto;
-            width: 400px;
-            filter: drop-shadow(0 10px 30px rgba(0, 168, 255, 0.25));
-        }
-
         /* Titles & Descriptions */
         .section-title {
             font-size: 40px;
@@ -222,69 +206,114 @@
             line-height: 1.6;
         }
 
-        /* Services Grid Layout */
+        /* Services – styled like contact cards */
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
             width: 100%;
+            margin-top: 20px;
         }
 
-        .service-card {
+        .service-card-new {
             background-color: #12141c;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 35px 25px;
-            border-radius: 15px;
-            transition: all 0.4s ease;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            text-decoration: none;
+            color: inherit;
         }
 
-        .service-card::before {
+        .service-card-new::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #00a8ff, #00ff87);
-            transition: width 0.4s ease;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00a8ff, #00ff87, #00a8ff);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
-        .service-card:hover::before {
-            width: 100%;
+        .service-card-new:hover {
+            transform: translateY(-8px);
+            border-color: transparent;
+            box-shadow: 0 15px 35px rgba(0, 255, 135, 0.15);
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 255, 135, 0.2);
-            box-shadow: 0 10px 30px rgba(0, 255, 135, 0.05);
+        .service-card-new:hover::before {
+            opacity: 0.3;
         }
 
-        .service-icon {
-            font-size: 35px;
-            margin-bottom: 20px;
-            display: block;
+        .service-card-new .icon-wrapper {
+            font-size: 36px;
+            background: rgba(0, 168, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            flex-shrink: 0;
         }
 
-        .service-card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #ffffff;
-            font-weight: 600;
+        .service-card-new:hover .icon-wrapper {
+            background: rgba(0, 255, 135, 0.15);
+            transform: scale(1.1);
         }
 
-        .service-card:hover h3 {
+        .service-card-new .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .service-card-new .info-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
             color: #00a8ff;
+            font-weight: 700;
+            margin-bottom: 4px;
         }
 
-        .service-card p {
+        .service-card-new .info-desc {
             color: #a4b0be;
             font-size: 14px;
             line-height: 1.6;
+            margin-bottom: 5px;
         }
 
-        /* About‑more cards */
+        .service-card-new .info-link {
+            color: #00ff87;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .service-card-new .info-link:hover {
+            color: #ffffff;
+        }
+
+        /* About cards */
         .about-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -313,7 +342,7 @@
             line-height: 1.6;
         }
 
-        /* Portfolio Grid Layout */
+        /* Portfolio */
         .portfolio-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -396,7 +425,7 @@
             text-decoration: underline;
         }
 
-        /* Beautiful Contact Cards */
+        /* Contact Cards */
         .contact-info {
             display: flex;
             justify-content: center;
@@ -486,7 +515,7 @@
             color: #00a8ff;
         }
 
-        /* Mobile adjustments */
+        /* Mobile */
         @media (max-width: 992px) {
             header {
                 padding: 20px 5%;
@@ -534,33 +563,28 @@
             }
 
             #home {
-                flex-direction: column-reverse;
-                text-align: center;
-                gap: 50px;
                 padding-top: 140px;
-            }
-
-            .hero-content {
-                max-width: 100%;
             }
 
             .hero-content h1 {
                 font-size: 40px;
             }
 
-            .hero-image {
-                max-width: 80%;
-            }
-
             .header-actions {
                 display: none;
             }
 
-            .contact-card {
+            .contact-card,
+            .service-card-new {
                 flex-direction: column;
                 text-align: center;
-                gap: 15px;
-                padding: 25px 30px;
+                align-items: center;
+                gap: 10px;
+                padding: 25px 20px;
+            }
+
+            .service-card-new .info-text {
+                align-items: center;
             }
         }
     </style>
@@ -593,7 +617,7 @@
         </div>
     </header>
 
-    <!-- PAGE SECTIONS -->
+    <!-- HOME PAGE – No picture, no words, just clean text -->
     <div id="home" class="page-section active-page" data-page="home">
         <div class="hero-content">
             <span class="subtitle">INNOVATING TODAY</span>
@@ -601,12 +625,9 @@
             <p>Zanvora Tech delivers smart, scalable, and future-ready digital solutions for businesses worldwide.</p>
             <a href="#services" class="btn-filled" data-nav="services">Our Services</a>
         </div>
-        <div class="hero-image">
-            <img src="./image0.jpeg" alt="Zanvora Tech Logo" class="logo-img">
-        </div>
     </div>
 
-    <!-- About page (only "More About" cards) -->
+    <!-- ABOUT PAGE -->
     <div id="about-more" class="page-section" data-page="about">
         <h2 class="section-title">About <span>Us</span></h2>
         <div class="about-container">
@@ -635,50 +656,69 @@
         </div>
     </div>
 
+    <!-- SERVICES PAGE -->
     <div id="services" class="page-section" data-page="services">
         <h2 class="section-title">Our <span>Services</span></h2>
         <p class="section-desc">We combine engineering expertise with digital strategy to build premium digital
             infrastructures designed to scale your enterprise operations.</p>
         <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">💻</span>
-                <h3>Website Design & Development</h3>
-                <p>We craft stunning, lightning-fast, and secure responsive websites tailored precisely to showcase your
-                    brand identity and maximize conversions.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">💻</div>
+                <div class="info-text">
+                    <span class="info-label">Web Development</span>
+                    <p class="info-desc">Stunning, lightning‑fast, secure responsive websites tailored to showcase your
+                        brand and maximize conversions.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">📱</span>
-                <h3>Mobile App Development</h3>
-                <p>Engineering premium native iOS and Android applications with fluid UI animations and robust
-                    micro-service backends built for global scalability.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">📱</div>
+                <div class="info-text">
+                    <span class="info-label">Mobile Apps</span>
+                    <p class="info-desc">Premium native iOS and Android apps with fluid UI and robust micro‑service
+                        backends.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🛒</span>
-                <h3>E-commerce Solutions</h3>
-                <p>Launch dynamic online stores with seamless multi-currency checkout channels, automated stock
-                    reporting trackers, and high-security gateways.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🛒</div>
+                <div class="info-text">
+                    <span class="info-label">E‑commerce</span>
+                    <p class="info-desc">Dynamic online stores with seamless multi‑currency checkout and high‑security
+                        gateways.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">📈</span>
-                <h3>Digital Marketing</h3>
-                <p>Accelerate your growth pipeline with data-centric targeted campaigns, search engine optimization
-                    (SEO), and conversion rate enhancement tracks.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">📈</div>
+                <div class="info-text">
+                    <span class="info-label">Digital Marketing</span>
+                    <p class="info-desc">Data‑centric campaigns, SEO, and conversion rate optimisation to accelerate
+                        growth.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🎨</span>
-                <h3>Graphic Design & Branding</h3>
-                <p>Architect unique layout systems, bespoke brand visual identity frameworks, and guidelines structured
-                    to solidify your industry footprint.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🎨</div>
+                <div class="info-text">
+                    <span class="info-label">Branding & Design</span>
+                    <p class="info-desc">Unique visual identities, guidelines, and layout systems to solidify your
+                        footprint.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">🤝</span>
-                <h3>IT Consulting</h3>
-                <p>Get elite architecture technical audits, security vulnerability assessments, and technological
-                    deployment configurations mapped precisely to your targets.</p>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🤝</div>
+                <div class="info-text">
+                    <span class="info-label">IT Consulting</span>
+                    <p class="info-desc">Technical audits, vulnerability assessments, and deployment configurations.</p>
+                    <a href="#" class="info-link">Learn More →</a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- PORTFOLIO PAGE -->
     <div id="portfolio" class="page-section" data-page="portfolio">
         <h2 class="section-title">Our <span>Portfolio</span></h2>
         <p class="section-desc">Discover our latest deployments, automated platforms, and custom digital systems
@@ -688,8 +728,8 @@
                 <div class="portfolio-img-box">🛍️<span class="portfolio-badge">E-commerce</span></div>
                 <div class="portfolio-info">
                     <h3>Zanvora Store</h3>
-                    <p>A high-performance online retail marketplace engineered with real-time stock micro-trackers,
-                        dynamic user panels, and integrated payment gateways.</p>
+                    <p>A high-performance online retail marketplace engineered with real-time stock micro‑trackers,
+                        dynamic user panels, and integrated payments.</p>
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
@@ -697,8 +737,8 @@
                 <div class="portfolio-img-box">🏛️<span class="portfolio-badge">Web Portal</span></div>
                 <div class="portfolio-info">
                     <h3>Government Portal</h3>
-                    <p>A secure, unified cloud infrastructure designed for citizen service administration, database
-                        cross-matching, and high-encryption data compliance.</p>
+                    <p>Secure, unified cloud infrastructure designed for citizen service administration and data
+                        compliance.</p>
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
@@ -706,18 +746,16 @@
                 <div class="portfolio-img-box">⚙️<span class="portfolio-badge">AI & Automation</span></div>
                 <div class="portfolio-info">
                     <h3>Automation Engine</h3>
-                    <p>Custom machine learning script architectures developed to automate administrative pipelines and
-                        optimize multi-department logistics workflows.</p>
+                    <p>Custom machine learning scripts to automate administrative pipelines and logistics workflows.</p>
                     <a href="#" class="portfolio-link">View Case Study &rarr;</a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- CONTACT PAGE -->
     <div id="contact" class="page-section" data-page="contact">
         <h2 class="section-title">Contact <span>Us</span></h2>
-
-        <!-- Beautiful contact cards (no description text) -->
         <div class="contact-info">
             <div class="contact-card">
                 <div class="icon-wrapper">📞</div>
@@ -743,13 +781,11 @@
             const allNavLinks = document.querySelectorAll('.nav-links a, .logo-container[data-nav], .btn-outline[data-nav], .btn-filled[data-nav]');
             const allPages = document.querySelectorAll('.page-section');
 
-            // Hamburger toggle
             hamburger.addEventListener('click', () => {
                 navLinksMenu.classList.toggle('active');
                 hamburger.classList.toggle('toggle');
             });
 
-            // Function to switch page
             function switchPage(pageName) {
                 allPages.forEach(page => page.classList.remove('active-page'));
                 const targetPages = document.querySelectorAll(`.page-section[data-page="${pageName}"]`);
@@ -775,7 +811,6 @@
                 });
             });
 
-            // Set initial page
             switchPage('home');
         })();
     </script>
