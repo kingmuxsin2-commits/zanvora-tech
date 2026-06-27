@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zanvora Tech - Innovating Today</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0a0c14;
+            color: #ffffff;
+            overflow-x: hidden;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='none'/%3E%3Cpath d='M0 40 L200 40 M0 100 L200 100 M0 160 L200 160' stroke='%2300a8ff' stroke-width='2' fill='none' opacity='0.6'/%3E%3Cpath d='M40 0 L40 200 M100 0 L100 200 M160 0 L160 200' stroke='%2300a8ff' stroke-width='2' fill='none' opacity='0.6'/%3E%3Cpath d='M40 40 L120 40 L120 100 M100 100 L100 160 L160 160 M160 100 L200 100 M0 160 L40 160 L40 200' stroke='%2300ff87' stroke-width='2' fill='none' opacity='0.7'/%3E%3Cpath d='M80 0 L80 80 L120 80 M120 120 L120 160 L200 160 M160 0 L160 40 L200 40' stroke='%2300ff87' stroke-width='2' fill='none' opacity='0.5'/%3E%3Ccircle cx='40' cy='40' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='120' cy='40' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='120' cy='100' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='100' cy='100' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='160' cy='160' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='40' cy='160' r='4' fill='%2300ff87' opacity='0.8'/%3E%3Ccircle cx='80' cy='80' r='4' fill='%2300a8ff' opacity='0.8'/%3E%3Ccircle cx='120' cy='160' r='4' fill='%2300a8ff' opacity='0.8'/%3E%3Ccircle cx='160' cy='40' r='4' fill='%2300a8ff' opacity='0.8'/%3E%3Ccircle cx='200' cy='40' r='4' fill='%2300a8ff' opacity='0.5'/%3E%3Ccircle cx='40' cy='200' r='4' fill='%2300a8ff' opacity='0.5'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
+            background-repeat: repeat;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(10, 12, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+        }
+
+        .logo-container {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 24px;
+            letter-spacing: 1px;
+            color: #00a8ff;
+        }
+
+        .green-text {
+            color: #00ff87;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #a4b0be;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.3s;
+            font-weight: 500;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff87;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00ff87;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 30px;
+            height: 24px;
+            position: relative;
+            z-index: 1010;
+        }
+
+        .hamburger span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 3px;
+            left: 0;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+
+        .hamburger .line1 {
+            top: 0;
+        }
+
+        .hamburger .line2 {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .hamburger .line3 {
+            bottom: 0;
+        }
+
+        .hamburger.toggle .line1 {
+            top: 50%;
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .hamburger.toggle .line2 {
+            opacity: 0;
+        }
+
+        .hamburger.toggle .line3 {
+            top: 50%;
+            transform: translateY(-50%) rotate(-45deg);
+        }
+
+        .btn-outline {
+            border: 2px solid #00ff87;
+            color: #00ff87;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s ease;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .btn-outline:hover {
+            background-color: #00ff87;
+            color: #0a0c14;
+        }
+
+        .menu-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1004;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        section {
+            padding: 120px 8% 80px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            background-color: rgba(10, 12, 20, 0.85);
+        }
+
+        #home {
+            background-color: rgba(10, 12, 20, 0.75);
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #home::before,
+        #home::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        #home::before {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 168, 255, 0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: floatGlow 6s ease-in-out infinite;
+        }
+
+        #home::after {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 255, 135, 0.1) 0%, transparent 70%);
+            bottom: -80px;
+            left: -80px;
+            animation: floatGlow 6s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatGlow {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(30px, -30px);
+            }
+        }
+
+        .hero-content {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+            margin: 0 auto;
+        }
+
+        .subtitle {
+            color: #00a8ff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* FIXED SHIMMER – the moving light is now ON TOP of the gradient */
+        .hero-content h1 {
+            font-size: clamp(40px, 8vw, 65px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background:
+                /* shimmer layer (on top) */
+                linear-gradient(90deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%) no-repeat,
+                /* solid color gradient (underneath) */
+                linear-gradient(135deg, #ffffff 0%, #00a8ff 70%) no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 100% 100%, 100% 100%;
+            /* first: shimmer expands to double width */
+            background-position: -200% 0, 0 0;
+            animation: shimmer 3s infinite;
+        }
+
+        /* Same fix for the blue-text span */
+        .hero-content h1 .blue-text {
+            background:
+                linear-gradient(90deg, transparent 30%, rgba(255, 255, 255, 0.6) 50%, transparent 70%) no-repeat,
+                linear-gradient(135deg, #00a8ff 0%, #00ff87 100%) no-repeat;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 100% 100%, 100% 100%;
+            background-position: -200% 0, 0 0;
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0, 0 0;
+            }
+
+            100% {
+                background-position: 200% 0, 0 0;
+            }
+        }
+
+        .hero-content p {
+            color: #a4b0be;
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Button container */
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn-filled {
+            display: inline-block;
+            background: linear-gradient(135deg, #00a8ff, #00ff87);
+            border: none;
+            color: #0a0c14;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(0, 255, 135, 0.3);
+            cursor: pointer;
+        }
+
+        .btn-filled:hover {
+            box-shadow: 0 0 35px rgba(0, 255, 135, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* Additional ghost button for Contact Us */
+        .btn-ghost {
+            display: inline-block;
+            border: 2px solid #00ff87;
+            color: #00ff87;
+            padding: 14px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.4s;
+            background: transparent;
+        }
+
+        .btn-ghost:hover {
+            background-color: #00ff87;
+            color: #0a0c14;
+            box-shadow: 0 0 20px rgba(0, 255, 135, 0.4);
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 40px);
+            margin-bottom: 15px;
+            color: #00a8ff;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: #00ff87;
+        }
+
+        .section-desc {
+            color: #a4b0be;
+            font-size: 16px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.6;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .service-card-new {
+            background-color: rgba(18, 20, 28, 0.95);
+            border: 1px solid rgba(0, 168, 255, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card-new::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00a8ff, #00ff87, #00a8ff);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card-new:hover,
+        .service-card-new.force-hover {
+            transform: translateY(-8px);
+            border-color: transparent;
+            box-shadow: 0 15px 35px rgba(0, 255, 135, 0.2);
+        }
+
+        .service-card-new:hover::before,
+        .service-card-new.force-hover::before {
+            opacity: 0.3;
+        }
+
+        .service-card-new .icon-wrapper {
+            font-size: 36px;
+            background: rgba(0, 168, 255, 0.1);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .service-card-new:hover .icon-wrapper,
+        .service-card-new.force-hover .icon-wrapper {
+            background: rgba(0, 255, 135, 0.2);
+            transform: scale(1.1);
+        }
+
+        .service-card-new .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .service-card-new .info-label {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #00a8ff;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .service-card-new .info-desc {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .service-card-new .info-link {
+            color: #00ff87;
+            font-weight: 700;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+            margin-top: auto;
+        }
+
+        .service-card-new .info-link:hover {
+            color: #ffffff;
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .about-card {
+            background-color: rgba(18, 20, 28, 0.95);
+            border: 1px solid rgba(0, 168, 255, 0.15);
+            padding: 35px 25px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .about-card:hover,
+        .about-card.force-hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 135, 0.4);
+            box-shadow: 0 12px 30px rgba(0, 168, 255, 0.2);
+        }
+
+        .about-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .about-card p {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .portfolio-card {
+            background-color: rgba(11, 12, 16, 0.95);
+            border: 1px solid rgba(0, 168, 255, 0.15);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .portfolio-card:hover,
+        .portfolio-card.force-hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 255, 135, 0.4);
+            box-shadow: 0 15px 35px rgba(0, 168, 255, 0.2);
+        }
+
+        .portfolio-img-box {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #12141c, #1f2430);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            border-bottom: 1px solid rgba(0, 168, 255, 0.2);
+            position: relative;
+        }
+
+        .portfolio-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 168, 255, 0.2);
+            color: #00a8ff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 168, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .portfolio-info p {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-link {
+            color: #00ff87;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .portfolio-link:hover {
+            color: #00a8ff;
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 50px;
+        }
+
+        .contact-card {
+            background-color: rgba(18, 20, 28, 0.95);
+            border: 1px solid rgba(0, 168, 255, 0.2);
+            border-radius: 20px;
+            padding: 30px 35px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #00a8ff, #00ff87, #00a8ff);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .contact-card:hover,
+        .contact-card.force-hover {
+            transform: translateY(-8px);
+            border-color: transparent;
+            box-shadow: 0 15px 35px rgba(0, 255, 135, 0.2);
+        }
+
+        .contact-card:hover::before,
+        .contact-card.force-hover::before {
+            opacity: 0.3;
+        }
+
+        .contact-card .icon-wrapper {
+            font-size: 36px;
+            background: rgba(0, 168, 255, 0.15);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+            flex-shrink: 0;
+        }
+
+        .contact-card:hover .icon-wrapper,
+        .contact-card.force-hover .icon-wrapper {
+            background: rgba(0, 255, 135, 0.2);
+            transform: scale(1.1);
+        }
+
+        .contact-card .info-text {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .contact-card .info-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #a4b0be;
+            font-weight: 600;
+        }
+
+        .contact-card .info-link {
+            color: #00ff87;
+            font-weight: 700;
+            font-size: 17px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-card .info-link:hover {
+            color: #00a8ff;
+        }
+
+        @media (max-width: 992px) {
+            header {
+                padding: 15px 5%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background-color: #0a0c14;
+                border-left: 1px solid rgba(0, 168, 255, 0.3);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 40px;
+                transition: right 0.4s ease-in-out;
+                z-index: 1005;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 22px;
+                margin: 0;
+            }
+
+            .menu-overlay.active {
+                display: block;
+            }
+
+            .header-actions {
+                display: none;
+            }
+
+            section {
+                padding: 100px 5% 60px;
+            }
+
+            #home {
+                padding-top: 140px;
+            }
+
+            .service-card-new,
+            .about-card,
+            .contact-card {
+                text-align: center;
+                align-items: center;
+            }
+
+            .service-card-new .info-text {
+                align-items: center;
+            }
+
+            .contact-card {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+                padding: 25px 20px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 38px;
+            }
+
+            .subtitle {
+                font-size: 12px;
+            }
+
+            .hero-content p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 30px;
+            }
+
+            .btn-filled,
+            .btn-ghost {
+                padding: 12px 28px;
+                font-size: 15px;
+            }
+
+            .portfolio-img-box {
+                height: 160px;
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <header>
+        <a href="#home" class="logo-container">
+            <span class="logo-text">ZANVORA <span class="green-text">TECH</span></span>
+        </a>
+        <ul class="nav-links" id="menuLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+            <a href="#contact" class="btn-outline">Get In Touch</a>
+        </div>
+        <div class="hamburger" id="hamburgerBtn">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
+    </header>
+
+    <!-- HOME -->
+    <section id="home">
+        <div class="hero-content">
+            <span class="subtitle">INNOVATING TODAY</span>
+            <h1>BUILDING <br><span class="blue-text">TOMORROW</span></h1>
+            <p>Zanvora Tech delivers smart, scalable, and future-ready digital solutions for businesses worldwide.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-filled">Our Services</a>
+                <a href="#contact" class="btn-ghost">Contact Us</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <h2 class="section-title">About <span>Us</span></h2>
+        <div class="about-container">
+            <div class="about-card">
+                <h3>Who We Are</h3>
+                <p>We are a tech company that builds websites, apps, and software to help businesses grow in the digital
+                    world.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Mission</h3>
+                <p>We turn ideas into real digital products that make work easier and help our clients succeed.</p>
+            </div>
+            <div class="about-card">
+                <h3>Our Vision</h3>
+                <p>To be a leading tech company in Somaliland and beyond, known for great service and innovation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+        <h2 class="section-title">Our <span>Services</span></h2>
+        <p class="section-desc">We combine engineering expertise with digital strategy to build premium digital
+            infrastructures designed to scale your enterprise operations.</p>
+        <div class="services-grid">
+            <div class="service-card-new">
+                <div class="icon-wrapper">💻</div>
+                <div class="info-text">
+                    <span class="info-label">Web Development</span>
+                    <p class="info-desc">Stunning, lightning‑fast, secure responsive websites tailored to showcase your
+                        brand and maximize conversions.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card-new">
+                <div class="icon-wrapper">📱</div>
+                <div class="info-text">
+                    <span class="info-label">Mobile Apps</span>
+                    <p class="info-desc">Premium native iOS and Android apps with fluid UI and robust micro‑service
+                        backends.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🛒</div>
+                <div class="info-text">
+                    <span class="info-label">E‑commerce</span>
+                    <p class="info-desc">Dynamic online stores with seamless multi‑currency checkout and high‑security
+                        gateways.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card-new">
+                <div class="icon-wrapper">📈</div>
+                <div class="info-text">
+                    <span class="info-label">Digital Marketing</span>
+                    <p class="info-desc">Data‑centric campaigns, SEO, and conversion rate optimisation to accelerate
+                        growth.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🎨</div>
+                <div class="info-text">
+                    <span class="info-label">Branding & Design</span>
+                    <p class="info-desc">Unique visual identities, guidelines, and layout systems to solidify your
+                        footprint.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+            <div class="service-card-new">
+                <div class="icon-wrapper">🤝</div>
+                <div class="info-text">
+                    <span class="info-label">IT Consulting</span>
+                    <p class="info-desc">Technical audits, vulnerability assessments, and deployment configurations.</p>
+                    <a href="#contact" class="info-link">Learn More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio">
+        <h2 class="section-title">Our <span>Portfolio</span></h2>
+        <p class="section-desc">Discover our latest deployments, automated platforms, and custom digital systems
+            engineered for elite performance.</p>
+        <div class="portfolio-grid">
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">🛍️<span class="portfolio-badge">E-commerce</span></div>
+                <div class="portfolio-info">
+                    <h3>Zanvora Store</h3>
+                    <p>A high-performance online retail marketplace engineered with real-time stock micro‑trackers,
+                        dynamic user panels, and integrated payments.</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">🏛️<span class="portfolio-badge">Education</span></div>
+                <div class="portfolio-info">
+                    <h3>Start College Website</h3>
+                    <p>A modern, easy-to-use website for a college, helping students find courses and apply online.</p>
+                </div>
+            </div>
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">⚙️<span class="portfolio-badge">Real Estate</span></div>
+                <div class="portfolio-info">
+                    <h3>MSC Real Estate Website</h3>
+                    <p>A clean and professional real estate site where buyers can browse properties and contact agents
+                        easily.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <h2 class="section-title">Contact <span>Us</span></h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="icon-wrapper">📞</div>
+                <div class="info-text">
+                    <span class="info-label">Phone</span>
+                    <a href="tel:+252636012364" class="info-link">+252 63 6012364</a>
+                </div>
+            </div>
+            <div class="contact-card">
+                <div class="icon-wrapper">✉️</div>
+                <div class="info-text">
+                    <span class="info-label">Email</span>
+                    <a href="mailto:zanvoratech@gmail.com" class="info-link">zanvoratech@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mobile menu
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navLinksMenu = document.getElementById('menuLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const allNavLinks = document.querySelectorAll('.nav-links a');
+
+        function openMenu() {
+            navLinksMenu.classList.add('active');
+            hamburger.classList.add('toggle');
+            menuOverlay.classList.add('active');
+        }
+        function closeMenu() {
+            navLinksMenu.classList.remove('active');
+            hamburger.classList.remove('toggle');
+            menuOverlay.classList.remove('active');
+        }
+
+        hamburger.addEventListener('click', () => {
+            if (navLinksMenu.classList.contains('active')) closeMenu();
+            else openMenu();
+        });
+        menuOverlay.addEventListener('click', closeMenu);
+        allNavLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // Active nav highlight on scroll
+        const sections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                if (window.pageYOffset >= section.offsetTop - 150) current = section.getAttribute('id');
+            });
+            allNavLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
+            });
+        });
+
+        // Touch hover simulation for mobile
+        const touchCards = document.querySelectorAll('.service-card-new, .about-card, .portfolio-card, .contact-card');
+        touchCards.forEach(card => {
+            card.addEventListener('touchstart', function (e) {
+                this.classList.add('force-hover');
+            });
+            card.addEventListener('touchend', function (e) {
+                this.classList.remove('force-hover');
+            });
+            card.addEventListener('touchcancel', function (e) {
+                this.classList.remove('force-hover');
+            });
+        });
+    </script>
+</body>
+
+</html>
