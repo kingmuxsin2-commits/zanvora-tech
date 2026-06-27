@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zanvora Tech - Innovating Today</title>
+    <style>
+        /* General Settings */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #0b0c10;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation Menu */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background-color: rgba(11, 12, 16, 0.98);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Logo Container */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .header-logo-img {
+            width: 35px;
+            height: 35px;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 22px;
+            letter-spacing: 1px;
+            color: #00a8ff;
+        }
+
+        .green-text {
+            color: #00ff87;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #a4b0be;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 15px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #00ff87;
+        }
+
+        /* Hamburger Menu (Mobile Only) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 25px;
+            height: 20px;
+            z-index: 1010;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Buttons */
+        .btn-outline {
+            border: 2px solid #00ff87;
+            color: #00ff87;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s ease;
+            font-weight: bold;
+        }
+
+        .btn-outline:hover {
+            background-color: #00ff87;
+            color: #0b0c10;
+        }
+
+        .btn-filled {
+            display: inline-block;
+            border: 2px solid #00ff87;
+            background-color: transparent;
+            color: #00ff87;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: 0.3s ease;
+        }
+
+        .btn-filled:hover {
+            background-color: #00ff87;
+            color: #0b0c10;
+            box-shadow: 0 0 15px rgba(0, 255, 135, 0.4);
+        }
+
+        /* Sections Configuration */
+        section {
+            padding: 140px 8% 80px 8%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        #home {
+            background-color: #0b0c10;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #about {
+            background-color: #12141c;
+        }
+
+        #services {
+            background-color: #0b0c10;
+        }
+
+        #portfolio {
+            background-color: #12141c;
+        }
+
+        #contact {
+            background-color: #0b0c10;
+        }
+
+        .hero-content {
+            max-width: 50%;
+        }
+
+        .subtitle {
+            color: #00a8ff;
+            font-size: 14px;
+            letter-spacing: 2px;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .hero-content h1 {
+            font-size: 55px;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .blue-text {
+            color: #00a8ff;
+        }
+
+        .hero-content p {
+            color: #a4b0be;
+            font-size: 17px;
+            line-height: 1.6;
+        }
+
+        .hero-image {
+            max-width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-img {
+            max-width: 100%;
+            height: auto;
+            width: 400px;
+            filter: drop-shadow(0 10px 30px rgba(0, 168, 255, 0.25));
+        }
+
+        /* Titles & Descriptions */
+        .section-title {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00a8ff;
+            text-align: center;
+        }
+
+        .section-title span {
+            color: #00ff87;
+        }
+
+        .section-desc {
+            color: #a4b0be;
+            font-size: 16px;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 50px auto;
+            line-height: 1.6;
+        }
+
+        /* Services Grid Layout */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .service-card {
+            background-color: #12141c;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px 25px;
+            border-radius: 15px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about .service-card {
+            background-color: #0b0c10;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #00a8ff, #00ff87);
+            transition: width 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 135, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 255, 135, 0.05);
+        }
+
+        .service-icon {
+            font-size: 35px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .service-card:hover h3 {
+            color: #00a8ff;
+        }
+
+        .service-card p {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* ==========================================================================
+           NEW PORTFOLIO GRID LAYOUT
+           ========================================================================== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            width: 100%;
+        }
+
+        .portfolio-card {
+            background-color: #0b0c10;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 168, 255, 0.3);
+            box-shadow: 0 15px 35px rgba(0, 168, 255, 0.1);
+        }
+
+        /* Project Image/Visual Placeholder Box */
+        .portfolio-img-box {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #12141c, #1f2430);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        /* Modern subtle badge inside the project image */
+        .portfolio-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 168, 255, 0.15);
+            color: #00a8ff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 168, 255, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .portfolio-info {
+            padding: 25px;
+        }
+
+        .portfolio-info h3 {
+            font-size: 22px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .portfolio-info p {
+            color: #a4b0be;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .portfolio-link {
+            color: #00ff87;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.2s;
+        }
+
+        .portfolio-link:hover {
+            color: #00a8ff;
+            text-decoration: underline;
+        }
+
+        /* Mobile Layout Breakpoints */
+        @media (max-width: 992px) {
+            header {
+                padding: 20px 5%;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                background-color: #0b0c10;
+                border-left: 1px solid rgba(255, 255, 255, 0.1);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: 0.4s ease-in-out;
+                z-index: 1005;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 20px;
+                margin: 0;
+            }
+
+            .hamburger.toggle .line1 {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.toggle .line2 {
+                opacity: 0;
+            }
+
+            .hamburger.toggle .line3 {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 50px;
+                padding-top: 140px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-image {
+                max-width: 80%;
+            }
+
+            .header-actions {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a href="#home" class="logo-container">
+            <img src="./image.jpeg" alt="Zanvora Mini Logo" class="header-logo-img">
+            <span class="logo-text">ZANVORA <span class="green-text">TECH</span></span>
+        </a>
+
+        <ul class="nav-links" id="menuLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="header-actions">
+            <a href="#contact" class="btn-outline">Get In Touch</a>
+        </div>
+
+        <div class="hamburger" id="hamburgerBtn">
+            <span class="line1"></span>
+            <span class="line2"></span>
+            <span class="line3"></span>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="hero-content">
+            <span class="subtitle">INNOVATING TODAY</span>
+            <h1>BUILDING <br><span class="blue-text">TOMORROW</span></h1>
+            <p>Zanvora Tech delivers smart, scalable, and future-ready digital solutions for businesses worldwide.</p>
+            <a href="#services" class="btn-filled">Our Services</a>
+        </div>
+        <div class="hero-image">
+            <img src="./image0.jpeg" alt="Zanvora Tech Logo" class="logo-img">
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">About <span>Us</span></h2>
+        <p class="section-desc">
+        <p>
+            Zanvora Tech is a modern technology company committed to delivering innovative digital solutions that help
+            businesses, organizations, schools, government institutions and startups succeed in the digital world.
+        </p>
+
+        <br>
+
+        <p>
+            Our mission is to transform ideas into powerful digital experiences through modern websites, mobile
+            applications, software systems, branding, marketing and technology consulting services.
+        </p>
+
+        <br>
+
+        <p>
+            We focus on quality, innovation and customer satisfaction while providing scalable and reliable solutions
+            that support long-term growth and digital transformation.
+        </p>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Our <span>Services</span></h2>
+        <p class="section-desc">We combine engineering expertise with digital strategy to build premium digital
+            infrastructures designed to scale your enterprise operations.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">💻</span>
+                <h3>Website Design & Development</h3>
+                <p>We craft stunning, lightning-fast, and secure responsive websites tailored precisely to showcase your
+                    brand identity and maximize conversions.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📱</span>
+                <h3>Mobile App Development</h3>
+                <p>Engineering premium native iOS and Android applications with fluid UI animations and robust
+                    micro-service backends built for global scalability.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🛒</span>
+                <h3>E-commerce Solutions</h3>
+                <p>Launch dynamic online stores with seamless multi-currency checkout channels, automated stock
+                    reporting trackers, and high-security gateways.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📈</span>
+                <h3>Digital Marketing</h3>
+                <p>Accelerate your growth pipeline with data-centric targeted campaigns, search engine optimization
+                    (SEO), and conversion rate enhancement tracks.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎨</span>
+                <h3>Graphic Design & Branding</h3>
+                <p>Architect unique layout systems, bespoke brand visual identity frameworks, and guidelines structured
+                    to solidify your industry footprint.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🤖</span>
+                <h3>AI Solutions & Automation</h3>
+                <p>Integrate machine learning frameworks, smart automation workflows, and computational data bots to
+                    maximize administrative cost savings.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🤝</span>
+                <h3>IT Consulting</h3>
+                <p>Get elite architecture technical audits, security vulnerability assessments, and technological
+                    deployment configurations mapped precisely to your targets.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h2 class="section-title">Our <span>Portfolio</span></h2>
+        <p class="section-desc">Discover our latest deployments, automated platforms, and custom digital systems
+            engineered for elite performance.</p>
+
+        <div class="portfolio-grid">
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">
+                    🛍️
+                    <span class="portfolio-badge">E-commerce</span>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Zanvora Store</h3>
+                    <p>A high-performance online retail marketplace engineered with real-time stock micro-trackers,
+                        dynamic user panels, and integrated payment gateways.</p>
+                    <a href="#" class="portfolio-link">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">
+                    🏛️
+                    <span class="portfolio-badge">Web Portal</span>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Government Portal</h3>
+                    <p>A secure, unified cloud infrastructure designed for citizen service administration, database
+                        cross-matching, and high-encryption data compliance.</p>
+                    <a href="#" class="portfolio-link">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">
+                    ⚙️
+                    <span class="portfolio-badge">AI & Automation</span>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Automation Engine</h3>
+                    <p>Custom machine learning script architectures developed to automate administrative pipelines and
+                        optimize multi-department logistics workflows.</p>
+                    <a href="#" class="portfolio-link">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+            <div class="portfolio-card">
+                <div class="portfolio-img-box">
+                    📊
+                    <span class="portfolio-badge">Mobile App</span>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Fintech Mobile App</h3>
+                    <p>Native mobile banking and multi-asset management dashboard deploying advanced biometric
+                        authentication channels and fluid UI components.</p>
+                    <a href="#" class="portfolio-link">View Case Study &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="section" id="about">
+
+        <h2 class="section-title">
+            About <span>Zanvora Tech</span>
+        </h2>
+
+        <div class="about-container">
+
+            <div class="about-card">
+
+                <h3>Who We Are</h3>
+
+                <p>
+                    Zanvora Tech is a forward-thinking technology company dedicated to creating innovative digital
+                    solutions that help businesses, organizations, schools, and government institutions thrive in the
+                    modern digital era.
+                </p>
+
+                <p>
+                    We combine creativity, technology, and strategy to build websites, mobile applications, software
+                    systems, and digital platforms that deliver measurable results and exceptional user experiences.
+                </p>
+
+            </div>
+
+            <div class="about-card">
+
+                <h3>Our Mission</h3>
+
+                <p>
+                    Our mission is to transform ideas into powerful digital products that drive growth, improve
+                    efficiency, and create lasting value for our clients.
+                </p>
+
+                <p>
+                    We are committed to providing reliable, scalable, and high-quality technology solutions that support
+                    digital transformation across every industry.
+                </p>
+
+            </div>
+
+            <div class="about-card">
+
+                <h3>Our Vision</h3>
+
+                <p>
+                    To become one of the leading technology companies in Somaliland and beyond by delivering world-class
+                    innovation, outstanding customer service, and impactful digital solutions.
+                </p>
+
+                <p>
+                    We envision a future where technology empowers every business and organization to reach its full
+                    potential.
+                </p>
+
+            </div>
+
+
+
+
+    </section>
+
+    <script>
+        const hamburger = document.getElementById('hamburgerBtn');
+        const navLinksMenu = document.getElementById('menuLinks');
+        const individualLinks = document.querySelectorAll('.nav-links a');
+        const sections = document.querySelectorAll('section');
+
+        hamburger.addEventListener('click', () => {
+            navLinksMenu.classList.toggle('active');
+            hamburger.classList.toggle('toggle');
+        });
+
+        individualLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinksMenu.classList.remove('active');
+                hamburger.classList.remove('toggle');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let currentActiveSectionId = '';
+            sections.forEach(section => {
+                const sectionTopOffset = section.offsetTop;
+                if (window.pageYOffset >= (sectionTopOffset - 150)) {
+                    currentActiveSectionId = section.getAttribute('id');
+                }
+            });
+            individualLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentActiveSectionId}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
